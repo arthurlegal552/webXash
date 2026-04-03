@@ -14,11 +14,10 @@ const app = express();
 const server = http.createServer(app);
 
 // Servir frontend construído (Vite -> dist)
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(process.cwd(), "dist")));
 
-// Fallback para index.html (essencial para SPA)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.join(process.cwd(), 'dist', 'index.html'));
 });
 
 // Criar servidor WebSocket para multiplayer
