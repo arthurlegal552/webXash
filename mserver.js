@@ -13,11 +13,11 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const server = http.createServer(app);
 
-// Servir frontend construído (Vite -> dist)
-app.use(express.static(path.join(process.cwd(), "dist")));
+const distPath = path.join(__dirname, 'dist');
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'dist', 'index.html'));
+app.use('/webXash', express.static(distPath));
+app.get('/webXash/*', (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
 });
 
 // Criar servidor WebSocket para multiplayer
