@@ -6,7 +6,7 @@ import path from "path";
 const app = express();
 const server = http.createServer(app);
 
-// Use process.cwd() para pegar a raiz do projeto
+// Use process.cwd() para apontar para a raiz do projeto
 const distPath = path.join(process.cwd(), "dist");
 
 app.use(express.static(distPath));
