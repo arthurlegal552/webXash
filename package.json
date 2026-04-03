@@ -5,22 +5,24 @@
   "homepage": "https://x8bitrain.github.io/webXash",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview",
-    "deploy": "bun run build && touch 'dist/.nojekyll' && gh-pages -d dist"
-  },
+  "dev": "vite",
+  "build": "vue-tsc -b && vite build",
+  "start": "tsc mserver.ts && node mserver.js",
+  "preview": "vite preview",
+  "deploy": "bun run build && touch 'dist/.nojekyll' && gh-pages -d dist"
+},
   "dependencies": {
-    "idb-keyval": "6.2.2",
-    "cs16-client": "0.1.2",
-    "fflate": "0.8.2",
-    "gh-pages": "^6.3.0",
-    "hlsdk-portable": "0.1.2",
-    "pinia": "3.0.3",
-    "pinia-plugin-persistedstate": "^4.4.1",
-    "vue": "3.5.13",
-    "xash3d-fwgs": "1.2.2"
-  },
+  "express": "^4.18.2",
+  "socket.io": "^4.7.1",
+  "idb-keyval": "6.2.2",
+  "cs16-client": "0.1.2",
+  "fflate": "0.8.2",
+  "gh-pages": "^6.3.0",
+  "pinia": "3.0.3",
+  "pinia-plugin-persistedstate": "^4.4.1",
+  "vue": "3.5.13",
+  "xash3d-fwgs": "1.2.2"
+},
   "devDependencies": {
     "@vitejs/plugin-vue": "5.2.3",
     "@vue/tsconfig": "0.7.0",
