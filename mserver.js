@@ -1,11 +1,23 @@
-import { fileURLToPath } from "url";
+// mserver.js
+import express from "express";
+import http from "http";
+import { Server } from "socket.io";
 import path from "path";
+import { fileURLToPath } from "url";
 
-// Definir __dirname no ESM
+// Criar __dirname em ES Module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Criar app Express
+const app = express();
+const server = http.createServer(app);
+
+// Servir frontend construído (Vite -> dist)
 app.use(express.static(path.join(__dirname, "dist")));
+
+// Criar servidor WebSocket para multiplayer
+const io = new Server(server, { cors: { origin: "*" } });
 
 io.on("connection", (socket) => {
   console.log("Cliente conectado:", socket.id);
