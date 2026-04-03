@@ -1,16 +1,10 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import * as path from 'node:path';
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  base: './', // ou remova esta linha
   plugins: [vue()],
+  base: './',       // garante que funciona direto no root
   build: {
-    outDir: 'dist', // garante que o dist vai para a raiz
-  },
-  resolve: {
-    alias: {
-      '/@': path.resolve(__dirname, './src'),
-    },
-  },
-});
+    outDir: 'dist'  // sempre gera o dist na raiz
+  }
+})

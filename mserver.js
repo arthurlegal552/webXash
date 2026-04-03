@@ -6,22 +6,17 @@ import path from "path";
 const app = express();
 const server = http.createServer(app);
 
-// Use process.cwd() para apontar para a raiz do projeto
+// Serve SPA + assets
 const distPath = path.join(process.cwd(), "dist");
-
 app.use(express.static(distPath));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(distPath, "index.html"));
-});
+app.get("*", (req, res) => res.sendFile(path.join(distPath, "index.html")));
 
-// WebSocket multiplayer
+// Multiplayer WebSocket
 const io = new Server(server, { cors: { origin: "*" } });
-io.on("connection", (socket) => {
+io.on("connection", socket => {
   console.log("Cliente conectado:", socket.id);
-  socket.on("game-event", (data) => socket.broadcast.emit("game-event", data));
+  socket.on("game-event", data => socket.broadcast.emit("game-event", data));
 });
 
 const PORT = process.env.PORT || 10000;
-server.listen(PORT, () =>
-  console.log(`Servidor multiplayer rodando na porta ${PORT}`)
-);
+server.listen(PORT, () => console.log(`Servidor multiplayer rodando na porta ${PORT}`));
